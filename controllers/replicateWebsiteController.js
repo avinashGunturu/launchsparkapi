@@ -23,10 +23,10 @@ exports.submitReplicateWebsite = async (req, res) => {
       await replicate.save();
     }
 
-    res.json({ success: true, message: 'Website replication request submitted.', data: replicate });
+    res.json({ code:0,success: true, message: 'Website replication request submitted.', data: replicate });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: 'Error submitting website replication request.', error: error.message });
+    res.status(500).json({ code:1,success: false, message: 'Error submitting website replication request.', error: error.message });
   }
 };
 
@@ -43,9 +43,9 @@ exports.getAllReplicateWebsite = async (req, res) => {
       filter.mobileNumber = { $regex: req.body.phone, $options: 'i' };
     }
     const replicates = await ReplicateWebsite.find(filter);
-    res.json({ success: true, data: replicates });
+    res.json({ code:0,success: true, data: replicates });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: 'Error fetching website replication requests.', error: error.message });
+    res.status(500).json({ code:1,success: false, message: 'Error fetching website replication requests.', error: error.message });
   }
 };

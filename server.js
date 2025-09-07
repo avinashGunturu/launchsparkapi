@@ -7,7 +7,8 @@ const getQuoteRoutes = require('./routes/getQuote');
 const replicateWebsiteRoutes = require('./routes/replicateWebsite');
 
 const app = express();
-const allowedOrigins = ['http://localhost:3000', 'https://launchspark.in'];
+app.use(cors());
+const allowedOrigins = ['http://localhost:5173', 'https://launchspark.in'];
 
 const corsOptions = {
   origin: (origin, callback) => {
